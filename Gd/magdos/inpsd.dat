@@ -1,0 +1,31 @@
+simid Gd-hcp
+
+cell   1.000000000000000    00000000000000000   -0.00000000000000 
+      -0.500000000000000    0.866025403784439    0.00000000000000
+       0.000000000000000   -0.000000000000000    1.60021406811757
+
+ncell 100 100 100 # High-resolution MDOS
+bc    P P P
+sym 0
+posfile ./posfile
+
+posfiletype D
+initmag 3
+
+momfile ./momfile
+
+maptype 2
+exchange ./jfile
+
+ip_mode N # Skip thermalization
+mode N # Skip measurements
+
+# Magnons
+do_ams Y
+do_sc_local_axis N
+
+# Magnon DOS
+qpoints C
+do_magdos Y
+magdos_freq 5000
+#magdos_sigma 0.05
