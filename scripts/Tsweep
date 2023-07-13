@@ -1,0 +1,12 @@
+#! /bin/bash
+
+# Assumes a cumulant file as:
+# Iteration   <M>   <M^2>   <M^4>   U_{Binder}   \chi   C_v(tot)   <E> ...  
+
+echo "#Temperature   <M>   <M^2>   <M^4>   U_{Binder}   \chi   C_v(tot)   <E>"
+for ii in $@
+do
+   T=`echo $ii | sed 's/[^0-9\s]//g'`
+   DATA=`awk ' END{print $2,$3,$4,$5,$6,$7,$8}' < $ii/cum*.out`
+   echo "$T $DATA" 
+done
